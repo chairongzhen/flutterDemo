@@ -1,0 +1,616 @@
+RaisedButton(
+             child: Text("跳转到search页面"),
+             onPressed: (){
+                Navigator.pushNamed(
+                  context,
+                  SearchPage.routeName,
+                  arguments: {
+                    "id": 123
+                  }
+                );
+             },
+           ),
+
+
+Container(
+       child: Column(
+         children: <Widget>[
+           RaisedButton(
+             child: Text("跳转到关注页面"),
+             onPressed: (){
+               Navigator.of(context).push(
+                 MaterialPageRoute(builder: (context)=>SearchPage())
+               );
+             },
+           ),
+           SizedBox(height: 20),
+           RaisedButton(
+             child: Text("跳转到我的页面"),
+             onPressed: (){
+
+             },
+           )
+         ],
+       )
+    );
+
+
+    Expanded(child: Row(
+                      children: <Widget>[
+                        Container(child: Column(children: <Widget>[
+                          Image.network("https://www.itying.com/images/flutter/1.png",fit: BoxFit.cover,width: 60,height: 60,),
+                          SizedBox(height: 10,),
+                          Text("投资项目")
+                        ],),)
+                      ],
+                    ),)
+
+
+
+
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutterdemo/pages/%20HomeScreen.dart';
+import 'package:flutterdemo/pages/PassArgumentPage.dart';
+import 'package:flutterdemo/pages/PassArgumentsScreen.dart';
+import 'package:flutterdemo/pages/followPage.dart';
+import './res/listData.dart';
+import './ component/bottomTabs.dart';
+import './pages/searchPage.dart';
+import 'model/ScreenArguments.dart';
+
+// import './pages/animated_map_controller.dart';
+// import './pages/circle.dart';
+// import './pages/esri.dart';
+// import './pages/home.dart';
+// import './pages/map_controller.dart';
+// import './pages/marker_anchor.dart';
+// import './pages/moving_markers.dart';
+// import './pages/offline_map.dart';
+// import './pages/offline_mbtiles_map.dart';
+// import './pages/on_tap.dart';
+// import './pages/overlay_image.dart';
+// import './pages/plugin_api.dart';
+// import './pages/plugin_scalebar.dart';
+// import './pages/polyline.dart';
+// import './pages/tap_to_add.dart';
+
+void main() => runApp(MyApp());
+
+
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      // Provide a function to handle named routes. Use this function to
+      // identify the named route being pushed, and create the correct
+      // Screen.
+      onGenerateRoute: (settings) {
+        // If you push the PassArguments route
+        if (settings.name == PassArgumentsScreen.routeName) {
+          // Cast the arguments to the correct type: ScreenArguments.
+          final ScreenArguments args = settings.arguments;
+
+          // Then, extract the required data from the arguments and
+          // pass the data to the correct screen.
+          return MaterialPageRoute(
+            builder: (context) {
+              return PassArgumentsScreen(
+                title: args.title,
+                message: args.message,
+              );
+            },
+          );
+        }
+      },
+      title: 'Navigation with Arguments',
+      home: HomeScreen(),
+    );
+  }
+}
+
+
+
+
+
+// class HomePage extends StatefulWidget {
+//   HomePage({Key key}) : super(key: key);
+
+//   _HomePageState createState() => _HomePageState();
+// }
+
+// class _HomePageState extends State<HomePage> {
+//   List list = List();
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return ListView(
+//       children: <Widget>[
+//         Column(
+//           children: this.list.map((value){
+//             return ListTile(
+//               title: Text(value)
+//             );
+//           }).toList()
+//         ),
+//         SizedBox(height: 20,),
+//         RaisedButton(
+//           child: Text("button"),
+//           onPressed: (){
+//             setState(() {
+//               this.list.add("新增数据1");
+//               this.list.add("新增数据2");
+//             });
+//           },
+//         )
+//       ],
+//     );
+//   }
+// }
+
+// class HOmePage extends StatefulWidget {
+//   HOmePage({Key key}) : super(key: key);
+
+//   _HOmePageState createState() => _HOmePageState();
+// }
+
+// class _HOmePageState extends State<HOmePage> {
+//   int countNum = 0;
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: <Widget>[
+//         SizedBox(height: 200),
+//         Chip(label: Text('${this.countNum}'),),
+//         SizedBox(height: 20,),
+//         RaisedButton(onPressed: (){
+//           setState(() {
+//             this.countNum ++ ;
+//           });
+//         },child: Text("按钮"),)
+//       ],
+//     );
+//   }
+// }
+
+// class HomePage extends StatelessWidget {
+//   int countNum = 1;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: <Widget>[
+//         SizedBox(height: 200),
+//         Text("${this.countNum}"),
+//         SizedBox(height: 20),
+//         RaisedButton(child: Text("button"), onPressed: (){
+//           this.countNum ++;
+//           print(this.countNum);
+//         },)
+//       ],
+//     );
+//   }
+// }
+
+// class LayoutDemo extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       height: 600,
+//       width: 300,
+//       color: Colors.pink,
+//       padding: EdgeInsets.all(10),
+//       child: Wrap(
+//         children: <Widget>[
+//           MyButton("第1集"),
+//           MyButton("第2集"),
+//           MyButton("第3集"),
+//           MyButton("第4集"),
+//           MyButton("第5集"),
+//           MyButton("第6集"),
+//           MyButton("第7集"),
+//           MyButton("第8集"),
+//           MyButton("第9集"),
+//           MyButton("第10集"),
+//           MyButton("第11集"),
+//           MyButton("第12集"),
+//           MyButton("第3集"),
+//         ],
+//         spacing: 10,
+//       ),
+//     );
+//   }
+// }
+
+// class MyButton extends StatelessWidget {
+//   final String text;
+
+//   const MyButton(this.text, {Key key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return RaisedButton(
+//       child: Text(this.text),
+//       textColor: Theme.of(context).accentColor,
+//       onPressed: () {},
+//     );
+//   }
+// }
+
+// class LayoutDemo extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return ListView(
+//       children: <Widget>[
+//        Card(
+//          margin: EdgeInsets.all(10),
+//          child: Column(
+//            children: <Widget>[
+//              AspectRatio(
+//                aspectRatio: 20 / 9,
+//                child: Image.network("https://www.itying.com/images/flutter/1.png",fit: BoxFit.cover,),
+//              ),
+//              ListTile(
+//                leading: ClipOval(child: Image.network("https://www.itying.com/images/flutter/2.png",fit: BoxFit.cover,height:60,width: 60,),),
+//                title: Text("xxxxx"),
+//                subtitle: Text("xxxxx"),
+//              )
+//            ],
+//          )
+//        ),
+//        Card(
+//          margin: EdgeInsets.all(10),
+//          child: Column(
+//            children: <Widget>[
+//              AspectRatio(
+//                aspectRatio: 20 / 9,
+//                child: Image.network("https://www.itying.com/images/flutter/3.png",fit: BoxFit.cover,),
+//              ),
+//              ListTile(
+//                leading: ClipOval(child: Image.network("https://www.itying.com/images/flutter/4.png",fit: BoxFit.cover,height:60,width: 60,),),
+//                title: Text("xxxxx"),
+//                subtitle: Text("xxxxx"),
+//              )
+//            ],
+//          )
+//        ),
+//        Card(
+//          margin: EdgeInsets.all(10),
+//          child: Column(
+//            children: <Widget>[
+//              AspectRatio(
+//                aspectRatio: 20 / 9,
+//                child: Image.network("https://www.itying.com/images/flutter/5.png",fit: BoxFit.cover,),
+//              ),
+//              ListTile(
+//                leading: CircleAvatar(backgroundImage: NetworkImage("https://www.itying.com/images/flutter/6.png"),),
+//                title: Text("xxxxx"),
+//                subtitle: Text("xxxxx"),
+//              )
+//            ],
+//          )
+//        )
+//       ],
+//     );
+//   }
+
+// }
+
+// class LayoutDemo extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Center(
+//       child: Container(
+//         height: 400,
+//         width: 300,
+//         color: Colors.red,
+//         child: Stack(
+//           children: <Widget>[
+//             Positioned(
+//               left: 10,
+//               child: Icon(Icons.home,size: 40,color: Colors.white),
+//             ),
+//             Positioned(
+//               bottom: 0,
+//               child: Icon(Icons.settings,size: 30,color: Colors.white),
+//             ),
+//             Positioned(
+//               right: 0,
+//               child: Icon(Icons.search,size: 60,color: Colors.white),
+//             )
+
+//           ],
+
+//         ),
+//       )
+//     );
+//   }
+
+// }
+
+// class LayoutDemo extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: <Widget>[
+//         Row(
+//           children: <Widget>[
+//             Expanded(
+//               child: Container(
+//                 height: 180,
+//                 color: Colors.black,
+//                 child: Text("您好flutter"),
+//               ),
+//             )
+//           ],
+//         ),
+//         SizedBox(height: 10),
+//         Row(
+//           children: <Widget>[
+//             Expanded(
+//               flex: 2,
+//               child: Container(
+//                 height: 180,
+
+//                 child: Image.network("https://www.itying.com/images/flutter/2.png",fit: BoxFit.cover),
+//               )
+//             ),
+//             SizedBox(width: 10),
+//             Expanded(
+//               flex: 1,
+
+//               child: Container(
+//                 height: 180,
+
+//                 child: ListView(
+//                   children: <Widget>[
+//                     Container(
+//                       height: 85,
+//                       child: Image.network("https://www.itying.com/images/flutter/3.png",fit: BoxFit.cover),
+//                     ),
+//                     SizedBox(height: 10),
+//                     Container(
+//                       height: 85,
+//                       child: Image.network("https://www.itying.com/images/flutter/4.png",fit: BoxFit.cover),
+//                     ),
+//                   ],
+//                 )
+//               )
+//             )
+//           ],
+//         )
+//       ],
+//     );
+
+//   }
+// }
+
+// class IconContainer extends StatelessWidget {
+
+//   double size = 32.0;
+//   Color color = Colors.red;
+//   IconData icon;
+
+//   IconContainer(this.icon,{this.color,this.size});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       height: 100,
+//       width: 100,
+//       color: this.color,
+//       child: Center(
+//         child: Icon(
+//           this.icon,
+//           size: this.size,
+//           color: Colors.white,
+//         )
+//       ),
+//     );
+//   }
+
+// }
+
+// class LayoutDemo extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+//       child: GridView.count(
+//       crossAxisCount: 2,
+//       childAspectRatio: 1.7,
+//       children: <Widget>[
+//         Padding(
+//           padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+//           child: Image.network('https://www.itying.com/images/flutter/1.png',
+//               fit: BoxFit.cover),
+//         ),
+//         Padding(
+//           padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+//           child: Image.network('https://www.itying.com/images/flutter/2.png',
+//               fit: BoxFit.cover),
+//         ),
+//         Padding(
+//           padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+//           child: Image.network('https://www.itying.com/images/flutter/2.png',
+//               fit: BoxFit.cover),
+//         ),
+//         Padding(
+//           padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+//           child: Image.network('https://www.itying.com/images/flutter/1.png',
+//               fit: BoxFit.cover),
+//         ),
+//         Padding(
+//           padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+//           child: Image.network('https://www.itying.com/images/flutter/1.png',
+//               fit: BoxFit.cover),
+//         ),
+//         Padding(
+//           padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+//           child: Image.network('https://www.itying.com/images/flutter/1.png',
+//               fit: BoxFit.cover),
+//         ),
+//         Padding(
+//           padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+//           child: Image.network('https://www.itying.com/images/flutter/1.png',
+//               fit: BoxFit.cover),
+//         ),
+//         Padding(
+//           padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+//           child: Image.network('https://www.itying.com/images/flutter/1.png',
+//               fit: BoxFit.cover),
+//         ),
+//         Padding(
+//           padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+//           child: Image.network('https://www.itying.com/images/flutter/1.png',
+//               fit: BoxFit.cover),
+//         ),
+//         Padding(
+//           padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+//           child: Image.network('https://www.itying.com/images/flutter/1.png',
+//               fit: BoxFit.cover),
+//         ),
+//         Padding(
+//           padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+//           child: Image.network('https://www.itying.com/images/flutter/1.png',
+//               fit: BoxFit.cover),
+//         ),
+//         Padding(
+//           padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+//           child: Image.network('https://www.itying.com/images/flutter/1.png',
+//               fit: BoxFit.cover),
+//         ),
+//       ],
+//     ));
+//   }
+// }
+
+// class LayoutDemo extends StatelessWidget {
+//   // List<Widget> _getListData() {
+//   //     var tempList = listData.map((value) {
+//   //       return Container(
+//   //         child: Column(
+//   //           children: <Widget>[
+//   //             Image.network(value['imageUrl']),
+//   //             SizedBox(height: 10),
+//   //             Text(value['title'],textAlign: TextAlign.center,style: TextStyle(fontSize: 20))
+//   //           ],
+//   //         ),
+//   //         decoration: BoxDecoration(
+//   //           border: Border.all(color: Color.fromRGBO(233, 233, 233, 0.9),
+//   //           width: 1)
+//   //         ),
+//   //       );
+//   //     });
+//   //     return tempList.toList();
+//   // }
+//     Widget _getListData(context,index) {
+//         return Container(
+//           child: Column(
+//             children: <Widget>[
+//               Image.network(listData[index]['imageUrl']),
+//               SizedBox(height: 10),
+//               Text(listData[index]['title'],textAlign: TextAlign.center,style: TextStyle(fontSize: 20))
+//             ],
+//           ),
+//           decoration: BoxDecoration(
+//             border: Border.all(color: Color.fromRGBO(233, 233, 233, 0.9),
+//             width: 1)
+//           ),
+//         );
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     // return GridView.count(
+//     //   crossAxisCount: 2,
+//     //   crossAxisSpacing:10.0,
+//     //   mainAxisSpacing: 10.0,
+//     //   padding: EdgeInsets.all(10),
+//     //   children: this._getListData()
+//     // );
+//     return GridView.builder(
+//       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//         crossAxisCount: 2,
+//         crossAxisSpacing:10.0,
+//         mainAxisSpacing: 10.0,
+//       ),
+//       itemCount: listData.length,
+//       itemBuilder: this._getListData
+//     );
+//   }
+
+// }
+
+// class HomeContent extends StatelessWidget {
+//   List list = List();
+//   HomeContent() {
+//     for(var i=0;i<20;i++) {
+//       //this.list.add(ListTile(title: Text("我是$i列表"),));
+
+//       this.list.add("我是$i列表");
+//     }
+//   }
+//   @override
+//   Widget build(BuildContext context) {
+//     return ListView.builder(
+//       itemCount: this.list.length,
+//       itemBuilder: (context,index) {
+//         return ListTile(title: Text(this.list[index]),);
+//       }
+//     );
+//   }
+
+// }
+
+// class MyApp extends StatelessWidget {
+//   // This widget is the root of your application.
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Flutter Map Example',
+//       theme: ThemeData(
+//         primarySwatch: mapBoxBlue,
+//       ),
+//       home: HomePage(),
+//       routes: <String, WidgetBuilder>{
+//         TapToAddPage.route: (context) => TapToAddPage(),
+//         EsriPage.route: (context) => EsriPage(),
+//         PolylinePage.route: (context) => PolylinePage(),
+//         MapControllerPage.route: (context) => MapControllerPage(),
+//         AnimatedMapControllerPage.route: (context) =>
+//             AnimatedMapControllerPage(),
+//         MarkerAnchorPage.route: (context) => MarkerAnchorPage(),
+//         PluginPage.route: (context) => PluginPage(),
+//         PluginScaleBar.route: (context) => PluginScaleBar(),
+//         OfflineMapPage.route: (context) => OfflineMapPage(),
+//         OfflineMBTilesMapPage.route: (context) => OfflineMBTilesMapPage(),
+//         OnTapPage.route: (context) => OnTapPage(),
+//         MovingMarkersPage.route: (context) => MovingMarkersPage(),
+//         CirclePage.route: (context) => CirclePage(),
+//         OverlayImagePage.route: (context) => OverlayImagePage(),
+//       },
+//     );
+//   }
+// }
+
+// // Generated using Material Design Palette/Theme Generator
+// // http://mcg.mbitson.com/
+// // https://github.com/mbitson/mcg
+// const int _bluePrimary = 0xFF395afa;
+// const MaterialColor mapBoxBlue = const MaterialColor(
+//   _bluePrimary,
+//   const <int, Color>{
+//     50: const Color(0xFFE7EBFE),
+//     100: const Color(0xFFC4CEFE),
+//     200: const Color(0xFF9CADFD),
+//     300: const Color(0xFF748CFC),
+//     400: const Color(0xFF5773FB),
+//     500: const Color(_bluePrimary),
+//     600: const Color(0xFF3352F9),
+//     700: const Color(0xFF2C48F9),
+//     800: const Color(0xFF243FF8),
+//     900: const Color(0xFF172EF6),
+//   },
+// );
