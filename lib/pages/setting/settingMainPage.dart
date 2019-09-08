@@ -95,7 +95,7 @@ class _SettingMainPageState extends State<SettingMainPage> {
               child: Text("退出登陆",style: TextStyle(color: Colors.white),),
               color: Colors.blue,
               onPressed: (){
-              
+                Navigator.pushNamed(context, "/login");
               },
             ),)
             ,
