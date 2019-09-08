@@ -44,7 +44,7 @@ class _SettingMainPageState extends State<SettingMainPage> {
             ],
           ),
         ),
-        Column(
+        Expanded(child:  SingleChildScrollView(child: Column(
           children: <Widget>[
             ListTile(
               leading: Icon(Icons.label),
@@ -83,7 +83,9 @@ class _SettingMainPageState extends State<SettingMainPage> {
             ),
             Divider(),
           ],
-        ),
+        ),),)
+       
+        ,
         Row(children: <Widget>[
           Expanded(
             child: 
