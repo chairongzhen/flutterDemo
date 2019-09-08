@@ -12,7 +12,7 @@ class _LoginPageState extends State<LoginPage> {
   FocusNode _focusNodeUserName = FocusNode();
   FocusNode _focusNodePassWord = FocusNode();
   TextEditingController _userNameController = TextEditingController();
-  GlobalKey _formKey = GlobalKey();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   var _password = '';
   var _username = '';
   var _isShowPwd = false;
@@ -68,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
   String validatePassWord(value) {
     if (value.isEmpty) {
       return '密码不能为空';
-    } else if (value.trim().length18) {
+    } else if (value.trim().length< 8) {
       return '密码长度不正确';
     }
     return null;
@@ -165,6 +165,7 @@ class _LoginPageState extends State<LoginPage> {
           //点击登录按钮，解除焦点，回收键盘
           _focusNodePassWord.unfocus();
           _focusNodeUserName.unfocus();
+          print("$_username + $_password");
           if (_formKey.currentState.validate()) {
             //只有输入通过验证，才会执行这里
             _formKey.currentState.save();
@@ -215,7 +216,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               IconButton(
                 color: Colors.green[200],
-                icon: Icon(FontAwesomeIcons.facebook),
+                icon: Icon(FontAwesomeIcons.weibo),
                 iconSize: 40.0,
                 onPressed: (){
                 },
